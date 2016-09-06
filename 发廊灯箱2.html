@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            /*width: 113px;*/
+            /*height: 400px;*/
+            width:400px;
+            height:113px;
+            overflow:hidden ;
+            border: 1px solid #000;
+            position: relative;
+            margin: 100px auto;
+        }
+        @keyframes demo{
+            0%{top:0;}
+            100%{top: -113px;}
+        }
+        .content{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 400px;
+            height: 400px;
+            background: -webkit-repeating-linear-gradient(-45deg, #ff0000 0px, #ff0000 20px, #fff 20px, #fff 40px ,#9999ff 40px, #9999ff 60px,#fff 60px ,#fff 80px);
+            animation: demo 1s linear infinite;
+        }
+input{
+    width: 50px;
+    margin-left: 20px;
+    color: #9999ff;
+}
+    </style>
+    <script>
+
+        window.onload=function(){
+            var oCol1=document.querySelector('#color1');
+            var oCol2=document.querySelector('#color2');
+            var oCon=document.querySelector('.content');
+            var oTxt1=document.querySelector('#txt1');
+            var oTxt2=document.querySelector('#txt2');
+            oCol1.onchange=function(){
+                oTxt1.value=this.value;
+                oCon.style.background='-webkit-repeating-linear-gradient(-45deg ,'+this.value+' 0px,'+this.value+' 20px, #fff 20px, #fff 40px ,'+oCol2.value+' 40px, '+oCol2.value+' 60px,#fff 60px ,#fff 80px)';
+            };
+            oCol2.onchange=function(){
+                oTxt2.value=this.value;
+                oCon.style.background='-webkit-repeating-linear-gradient(-45deg ,'+oCol1.value+' 0px,'+oCol1.value+' 20px, #fff 20px, #fff 40px ,'+this.value+' 40px, '+this.value+' 60px,#fff 60px ,#fff 80px)';
+            };
+        };
+
+    </script>
+</head>
+<body>
+<input type="color" id="color1" value="#ff0000" ><input type="text" id="txt1" value="#ff0000" >
+<input type="color" id="color2" value="#9999ff"  ><input type="text" id="txt2" value="#9999ff" >
+<div class="box">
+    <div class="content"></div>
+</div>
+</body>
+</html>
